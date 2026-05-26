@@ -86,7 +86,7 @@ def analyze(req: PromptRequest):
     if not req.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty")
 
-    result = analyze_prompt(req.prompt, req.strict_mode)
+    result = analyze_prompt(req.prompt, req.strict_mode or False)
     elapsed = (time.time() - start) * 1000
 
     return PromptResponse(
